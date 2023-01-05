@@ -8,9 +8,7 @@ pipeline {
     stages {
         stage('Building our image') {
             steps{
-                script {
-                    dockerImage = docker.build(registry)
-                }
+                sh 'docker build -t  aognov/CI-with-github'
             }
         }
         stage('Test'){
@@ -20,11 +18,7 @@ pipeline {
         }
         stage('Deploy our image') {
             steps{
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }
-                }
+                echo 'Empty'
             }
         }
     }
