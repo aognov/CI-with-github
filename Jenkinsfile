@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Building our image') {
             steps{
-                sh 'docker build -t  aognov/CI-with-github'
+                 echo 'Empty'
             }
         }
         stage('Test'){
