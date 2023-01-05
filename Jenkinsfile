@@ -1,9 +1,4 @@
 pipeline {
-    environment {
-    registry = "aognov/CI-with-github"
-    registryCredential = 'alexisognov'
-    dockerImage = ''
-    }
     agent any
     stages {
         stage('Building our image') {
