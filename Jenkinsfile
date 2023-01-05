@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('built') {
             steps{
-                app = docker.build("aognov/CI-with-github")
+                docker.build("aognov/CI-with-github")
             }
         }
         stage('test') {
