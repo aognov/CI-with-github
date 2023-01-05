@@ -3,18 +3,18 @@ pipeline {
 
     stages {
         stage('built') {
-            steps {
-                echo 'Building suceeded'
-            }
+
+                app = docker.build("aognov/CI-with-github")
         }
         stage('test') {
             steps {
-                echo 'Testing suceeded'
+                echo 'Testing'
             }
         }
         stage('deploy') {
-            steps {
-                echo 'Deploying suceeded'
+            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
             }
         }
       
