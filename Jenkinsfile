@@ -1,11 +1,9 @@
 pipeline {
     agent any
-
+    def app
     stages {
         stage('built') {
-            steps{
-                docker.build("aognov/CI-with-github")
-            }
+            docker.build("aognov/CI-with-github")
         }
         stage('test') {
             steps {
@@ -13,11 +11,9 @@ pipeline {
             }
         }
         stage('deploy') {
-            steps{
-                docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
-                }
+            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
             }
         }
       
