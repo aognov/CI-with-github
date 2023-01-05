@@ -1,6 +1,6 @@
 pipeline {
-    agent any
     def app
+    agent any
     stages {
         stage('built') {
             docker.build("aognov/CI-with-github")
