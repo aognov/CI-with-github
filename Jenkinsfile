@@ -5,24 +5,25 @@ pipeline {
     dockerImage = ''
     }
     agent any
-
-    stage('Building our image') {
-        steps{
-            script {
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+    stages {
+        stage('Building our image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
-    }
-    stage('Test'){
-        steps {
-             echo 'Empty'
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
         }
-    }
-    stage('Deploy our image') {
-        steps{
-            script {
-                docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+        stage('Deploy our image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
